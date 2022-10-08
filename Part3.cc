@@ -3,6 +3,39 @@
 #include <vector>
 int main(int argc, char* argv[]) {
   std::vector<std::string> arguments(argv, argv + argc);
+  int score{};
+  bool first = true;
+  for (const std::string& a : arguments){
+    if(first){
+      first = false;
+      continue;
+    } else{
+      if(a == "2" || a == "3" || a == "4" || a == "5" || a == "6" || a == "7" || a == "8" || a == "9" || a == "10"){
+        score += std::stoi(a);
+
+      }else if(a == "J" || a == "Q" || a == "j"){
+        score += 10;
+
+      }else if(a == "A"){
+        if(score <= 21){
+          score += 11;
+        } else{
+          score +=1;
+        }
+      } else{
+        std::cout << "error: unknown card '" << a << "' ";
+      }
+    }
+
+    if(score > 21){
+      std::cout << "Score is " << score;
+    }else{
+      std::cout << "Score is " << score << ", BUST";
+    }
+
+    return 0;
+
+  }
   // TO-DO create a bool variable in order to skip the first element in the for-each loop
   
   // TO-DO create an int variable in order to store the final score 
